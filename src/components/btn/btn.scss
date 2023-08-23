@@ -1,0 +1,24 @@
+@import "../../style/abstracts/variables";
+@import "../../style/abstracts/mixin";
+
+.card-words__button,
+.card-words__button-answer {
+  @include btn;
+}
+.card-words__button:focus-visible {
+  border: 1px solid #4c51f9;
+  outline: none;
+}
+.card-words__button:hover {
+  transition: all 0.2s;
+  box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+}
+.card-words__button:active {
+  background-color: #a1c0bd;
+}
+.card-words__button:disabled {
+  background-color: #eee;
+  border-color: #eee;
+  color: #444;
+  cursor: not-allowed;
+}

@@ -1,0 +1,26 @@
+@import "../../style/abstracts/variables";
+@import "../../style/abstracts/mixin";
+
+.table {
+  background: $bg-color-light;
+  margin: 0;
+  padding: 8% 5% 8% 5%;
+
+  .table__title {
+    @include h1;
+  }
+  .table__cont-new-word {
+    background: #0e876b2e;
+    border-radius: 10px;
+    padding: 2%;
+    margin: 2%;
+  }
+  .table__form {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .tableBtn {
+    margin: 0;
+  }
+}

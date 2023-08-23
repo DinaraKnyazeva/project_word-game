@@ -1,0 +1,34 @@
+@import "../../style/abstracts/mixin";
+@import "../../style/abstracts/variables";
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: $bg-color-dark;
+  margin-top: 0;
+  position: fixed;
+  width: 100%;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  li {
+    float: right;
+  }
+
+  a {
+    display: block;
+    @include text-light;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #3e3e42;
+  }
+}

@@ -1,0 +1,23 @@
+@import "../../style/abstracts/variables";
+@import "../../style/abstracts/mixin";
+.list__cont-icon {
+  width: 10%;
+  a {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+  }
+  svg {
+    width: 60%;
+    height: 100%;
+  }
+  .list__cont-icon {
+    display: flex;
+    max-height: 30px;
+    align-items: center;
+  }
+  #basket,
+  #pencil {
+    fill: $text-color-dark;
+  }
+}
