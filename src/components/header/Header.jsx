@@ -1,28 +1,26 @@
+import { NavLink } from "react-router-dom";
 import "./header.scss";
 
 export default function Header() {
   return (
     <div className="header">
-      <p className="header__logo">FRIENDS</p>
+      <NavLink to="/">FRIENDS</NavLink>
       <nav>
         <ul>
           <li>
-            <a href="#table">Словарь</a>
+            <NavLink to="/words">Словарь</NavLink>
           </li>
           <li>
-            <a href="#card-words__cards">Тренировка</a>
+            <NavLink to="/training">Тренировка</NavLink>
           </li>
           <li>
-            <a href="#decks">Модули</a>
+            <NavLink to="/module">Модули</NavLink>
           </li>
           <li>
-            <a href="#title">Главная</a>
+            <NavLink to="/">Главная</NavLink>
           </li>
         </ul>
       </nav>
-      <div className="header__registration">
-        <a href="#">Вход</a>
-      </div>
     </div>
   );
 }

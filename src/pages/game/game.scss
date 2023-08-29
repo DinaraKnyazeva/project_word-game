@@ -1,0 +1,24 @@
+@import "../../style/abstracts/variables";
+@import "../../style/abstracts/mixin";
+
+.game {
+  background: $bg-color-light;
+  padding: 8%;
+
+  .game__title {
+    @include h1;
+  }
+  .game__container {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+  }
+  .game__container-img {
+    display: flex;
+    width: 20%;
+    align-items: flex-end;
+  }
+  img {
+    width: 100%;
+  }
+}

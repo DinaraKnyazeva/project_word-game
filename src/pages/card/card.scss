@@ -1,29 +1,22 @@
 @import "../../style/abstracts/variables";
 @import "../../style/abstracts/mixin";
 
-.card-words__cards {
-  background: $bg-color-light;
-  padding: 8%;
+.card-words {
+  border-radius: 10px;
+  background: radial-gradient(
+      50% 50% at 50% 50%,
+      #dee9ed 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #a79dda;
+  box-shadow: 1px 1px 10px rgba(78, 55, 55, 0.2);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 50px 0 80px 0;
+  justify-content: space-around;
+  align-items: center;
 
-  .card-words__cards-title {
-    @include h1;
-  }
-  .card-words__cards-box {
-    border-radius: 10px;
-    background: radial-gradient(
-        50% 50% at 50% 50%,
-        #dee9ed 0%,
-        rgba(255, 255, 255, 0) 100%
-      ),
-      #a79dda;
-    box-shadow: 1px 1px 10px rgba(78, 55, 55, 0.2);
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin: 50px 0 80px 0;
-    justify-content: space-around;
-    align-items: center;
-  }
   .card-words__cards-icons {
     width: 80%;
     margin: 2%;
@@ -41,16 +34,6 @@
   .card-words__word-ru,
   .card-words__word-en {
     @include text-dark;
-  }
-  .card-words__container {
-    display: flex;
-    width: 80%;
-    justify-content: center;
-  }
-  .card-words__container-img {
-    display: flex;
-    width: 20%;
-    align-items: flex-end;
   }
   img {
     width: 100%;

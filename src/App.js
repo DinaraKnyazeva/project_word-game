@@ -1,42 +1,38 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import "./style/app.css";
-import Card from "./pages/card/Card";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
+
+import Header from "./components/header/Header";
+import Game from "./pages/game/Game";
 import Title from "./pages/title/Title";
 import Decks from "./pages/decks/Decks";
 import Table from "./pages/table/Table";
+import Error from "./pages/errorrr/Error";
+
+import "./style/app.scss";
 
 export default function App() {
   return (
-    <Router>
-      <div>
-        <div className="header">
-          <Link to="/">FRIENDS</Link>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/words">Словарь</Link>
-              </li>
-              <li>
-                <Link to="/training">Тренировка</Link>
-              </li>
-              <li>
-                <Link to="/module">Модули</Link>
-              </li>
-              <li>
-                <Link to="/">Главная</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <>
+      <Router>
+        <div>
+          <header>
+            <Header />
+          </header>
 
-        <Routes>
-          <Route path="/words" element={<Table />} />
-          <Route exact path="/" element={<Title />} />
-          <Route path="/training" element={<Card />} />
-          <Route path="/module" element={<Decks />} />
-        </Routes>
-      </div>
-    </Router>
+          <Routes>
+            <Route path="/words" element={<Table />} />
+            <Route path="/" element={<Title />} />
+            <Route path="/training" element={<Game />} />
+            <Route path="/module" element={<Decks />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 }
