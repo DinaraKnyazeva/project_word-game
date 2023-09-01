@@ -1,7 +1,39 @@
-.error {
-  margin-top: 400px;
-  p {
-    color: black;
-    text-align: center;
+.error-container {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  text-align: center;
+
+  .error-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .error-title {
+    font-size: 3rem;
+    color: #333;
+  }
+
+  .error-message {
+    font-size: 1.5rem;
+    color: #666;
+    margin-top: 20px;
+  }
+
+  .error-link {
+    margin-top: 20px;
+  }
+
+  .error-link a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .error-link a:hover {
+    text-decoration: underline;
   }
 }

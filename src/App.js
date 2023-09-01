@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/header/Header";
 import Game from "./pages/game/Game";
@@ -23,14 +18,15 @@ export default function App() {
           <header>
             <Header />
           </header>
-
-          <Routes>
-            <Route path="/words" element={<Table />} />
-            <Route path="/" element={<Title />} />
-            <Route path="/training" element={<Game />} />
-            <Route path="/module" element={<Decks />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
+          <main>
+            <Routes>
+              <Route path="/words" element={<Table />} />
+              <Route path="/training" element={<Game />} />
+              <Route path="/module" element={<Decks />} />
+              <Route exact path="/" element={<Title />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </main>
         </div>
       </Router>
     </>

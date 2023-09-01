@@ -28,10 +28,13 @@ export default function Game() {
           <img src={imgDogCard} alt="img dog" />
         </div>
         <div className="game__slide">
-          <button onClick={prevSlide}>Предыдущий</button>
-          {/* Передаем activeSlide в компонент Card */}
+          <button onClick={prevSlide} className="slider-button prev">
+            &larr;
+          </button>
           <Card activeSlide={activeSlide} />
-          <button onClick={nextSlide}>Следующий</button>
+          <button onClick={nextSlide} className="slider-button next">
+            &rarr;
+          </button>
         </div>
       </div>
     </div>
