@@ -16,7 +16,6 @@ export default function List(props) {
         </div>
         <Pencil />
       </div>
-
       <p className="list__line"></p>
     </div>
   );

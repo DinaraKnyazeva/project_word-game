@@ -6,6 +6,7 @@ import wordJson from "../../data/words.json";
 
 export default function Game() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [learnedWords, setLearnedWords] = useState(0); //для передачи с дочернего компонента кол-ва изученных слов
 
   const nextSlide = () => {
     if (activeSlide < wordJson.length - 1) {
@@ -17,6 +18,11 @@ export default function Game() {
     if (activeSlide > 0) {
       setActiveSlide(activeSlide - 1);
     }
+  };
+
+  //функция для добавляения кол-ва изученных слов (+1)
+  const handleWordLearned = () => {
+    setLearnedWords((prevCount) => prevCount + 1);
   };
 
   return (
@@ -31,12 +37,14 @@ export default function Game() {
           <button onClick={prevSlide} className="slider-button prev">
             &larr;
           </button>
-          <Card activeSlide={activeSlide} />
+          <Card activeSlide={activeSlide} onWordLearned={handleWordLearned} />
           <button onClick={nextSlide} className="slider-button next">
             &rarr;
           </button>
         </div>
       </div>
+
+      <div className="game__done">Изучено слов: {learnedWords}</div>
     </div>
   );
 }

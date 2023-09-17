@@ -22,8 +22,9 @@ export default function Table() {
             </div>
           </form>
         </div>
-        {wordJson.map((word) => (
+        {wordJson.map((word, id) => (
           <List
+            key={word.id}
             english={word.english}
             transcription={word.transcription}
             russian={word.russian}
