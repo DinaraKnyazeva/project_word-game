@@ -4,3 +4,6 @@ input {
   border-radius: 5px;
   border: 1px solid $bg-color-dark;
 }
+.input-error {
+  border: 1px solid red;
+}

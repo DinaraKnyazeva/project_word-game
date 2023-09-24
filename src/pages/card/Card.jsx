@@ -8,7 +8,7 @@ export default function Card({ activeSlide, onWordLearned }) {
   const { english, russian } = wordJson[wordIndex];
   const [showRussianWord, setShowRussianWord] = useState(false);
   const [showAnswerButton, setShowAnswerButton] = useState(true);
-  const answerButtonRef = useRef(null); //фокус на кнопку показать перевод
+  const answerButtonRef = useRef(null);
 
   useEffect(() => {
     setWordIndex(activeSlide);
@@ -28,6 +28,12 @@ export default function Card({ activeSlide, onWordLearned }) {
       answerButtonRef.current.focus();
     }
   }, [activeSlide]);
+
+  useEffect(() => {
+    if (showAnswerButton && answerButtonRef.current) {
+      answerButtonRef.current.focus();
+    }
+  }, [showAnswerButton]);
 
   return (
     <div className="card-words">

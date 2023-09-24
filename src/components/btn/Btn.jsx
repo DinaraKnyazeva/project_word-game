@@ -3,7 +3,11 @@ import "./btn.scss";
 
 export default class Btn extends React.Component {
   render() {
-    const { name, ...props } = this.props;
-    return <button {...props}>{name}</button>;
+    const { name, disabled, ...props } = this.props;
+    return (
+      <button disabled={disabled} {...props}>
+        {name}
+      </button>
+    );
   }
 }
