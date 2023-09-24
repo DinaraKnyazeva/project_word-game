@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+<img src="public/img/screen-home.png" width="500" alt="screenshot-home" >
+<img src="public/img/screen-game.png" width="500" alt="screenshot-home" >
+<img src="public/img/screen-table.png" width="500" alt="screenshot-home" >
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
