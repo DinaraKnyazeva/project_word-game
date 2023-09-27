@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Pencil from "../../components/pencil/Pencil";
-import wordJson from "../../data/words.json";
+import { WordsContext } from "../../context/WordsProvider";
 import "./card.scss";
 
 export default function Card({ activeSlide, onWordLearned }) {
+  const { words } = useContext(WordsContext);
+
   const [wordIndex, setWordIndex] = useState(0);
-  const { english, russian } = wordJson[wordIndex];
+  const { english, russian } = words[wordIndex] || {};
   const [showRussianWord, setShowRussianWord] = useState(false);
   const [showAnswerButton, setShowAnswerButton] = useState(true);
   const answerButtonRef = useRef(null);

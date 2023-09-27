@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { WordsProvider, WordsContext } from "../../context/WordsProvider";
 import Card from "../card/Card";
-import "./game.scss";
 import imgDogCard from "../../assets/img/dogcard.png";
-import wordJson from "../../data/words.json";
+import "./game.scss";
 
 export default function Game() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [learnedWords, setLearnedWords] = useState(0); //для передачи с дочернего компонента кол-ва изученных слов
+  const { words } = useContext(WordsContext);
 
   const nextSlide = () => {
-    if (activeSlide < wordJson.length - 1) {
+    if (activeSlide < words.length - 1) {
       setActiveSlide(activeSlide + 1);
     }
   };
@@ -37,7 +38,9 @@ export default function Game() {
           <button onClick={prevSlide} className="slider-button prev">
             &larr;
           </button>
-          <Card activeSlide={activeSlide} onWordLearned={handleWordLearned} />
+          <WordsProvider>
+            <Card activeSlide={activeSlide} onWordLearned={handleWordLearned} />
+          </WordsProvider>
           <button onClick={nextSlide} className="slider-button next">
             &rarr;
           </button>

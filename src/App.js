@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { WordsProvider } from "./context/WordsProvider";
 
 import Header from "./components/header/Header";
 import Game from "./pages/game/Game";
@@ -19,13 +20,15 @@ export default function App() {
             <Header />
           </header>
           <main>
-            <Routes>
-              <Route path="/words" element={<Table />} />
-              <Route path="/training" element={<Game />} />
-              <Route path="/module" element={<Decks />} />
-              <Route exact path="/" element={<Title />} />
-              <Route path="*" element={<Error />} />
-            </Routes>
+            <WordsProvider>
+              <Routes>
+                <Route path="/words" element={<Table />} />
+                <Route path="/training" element={<Game />} />
+                <Route path="/module" element={<Decks />} />
+                <Route exact path="/" element={<Title />} />
+                <Route path="*" element={<Error />} />
+              </Routes>
+            </WordsProvider>
           </main>
         </div>
       </Router>

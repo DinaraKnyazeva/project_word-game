@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
-import "./table.scss";
+import React, { useState, useEffect, useContext } from "react";
+import { WordsContext } from "../../context/WordsProvider";
 import Input from "../../components/input/input";
 import Btn from "../../components/btn/Btn";
 import List from "../../components/list/List";
-import wordJson from "../../data/words.json";
+import "./table.scss";
 
 export default function Table() {
+  const { words, addWord, updateWord, deleteWord } = useContext(WordsContext); //слова из базы + методы
   const [word, setWord] = useState("");
   const [translation, setTranslation] = useState("");
   const [transcription, setTranscription] = useState("");
   const [isFormValid, setFormValid] = useState(false);
   const validateEnglishWord = (word) => /^[a-zA-Z\s]+$/.test(word);
   const validateRussianWord = (word) => /^[а-яА-ЯёЁ\s]+$/.test(word);
-  const validateTranscription = (transcription) =>
-    /^[a-zA-Z0-9\s\-'’,.:;?()]+$/.test(transcription);
+  // const validateTranscription = (transcription) =>
+  //   /^[a-zA-Z0-9\s\-'’,.:;?()\[\]]+$/.test(transcription);
 
   useEffect(() => {
     setFormValid(word !== "" && translation !== "" && transcription !== "");
@@ -32,14 +33,15 @@ export default function Table() {
       return;
     }
 
-    if (!validateTranscription(transcription)) {
-      alert("Пожалуйста, введите корректную транскрипцию.");
-      return;
-    }
+    // if (!validateTranscription(transcription)) {
+    //   alert("Пожалуйста, введите корректную транскрипцию.");
+    //   return;
+    // }
 
-    console.log({
-      word: word,
-      translation: translation,
+    addWord({
+      id: words.length + 1,
+      english: word,
+      russian: translation,
       transcription: transcription,
     });
 
@@ -82,7 +84,7 @@ export default function Table() {
             </div>
           </form>
         </div>
-        {wordJson.map((word, id) => (
+        {words.map((word, id) => (
           <List
             key={word.id}
             english={word.english}
