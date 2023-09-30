@@ -3,20 +3,14 @@ import Pencil from "../../components/pencil/Pencil";
 import { WordsContext } from "../../context/WordsProvider";
 import "./card.scss";
 
-export default function Card({ activeSlide, onWordLearned }) {
+export default function Card({ activeSlide, onWordLearned, onEditClick }) {
   const { words } = useContext(WordsContext);
-
   const [wordIndex, setWordIndex] = useState(0);
   const { english, russian } = words[wordIndex] || {};
   const [showRussianWord, setShowRussianWord] = useState(false);
   const [showAnswerButton, setShowAnswerButton] = useState(true);
-  const answerButtonRef = useRef(null);
 
-  useEffect(() => {
-    setWordIndex(activeSlide);
-    setShowRussianWord(false);
-    setShowAnswerButton(true);
-  }, [activeSlide]);
+  const answerButtonRef = useRef(null);
 
   const handleShowAnswer = () => {
     setShowRussianWord(true);
@@ -24,23 +18,16 @@ export default function Card({ activeSlide, onWordLearned }) {
     onWordLearned();
   };
 
-  // фокуса на кнопке каждый раз, когда активное слово меняется
   useEffect(() => {
-    if (answerButtonRef.current) {
-      answerButtonRef.current.focus();
-    }
+    setWordIndex(activeSlide);
+    setShowRussianWord(false);
+    setShowAnswerButton(true);
   }, [activeSlide]);
-
-  useEffect(() => {
-    if (showAnswerButton && answerButtonRef.current) {
-      answerButtonRef.current.focus();
-    }
-  }, [showAnswerButton]);
 
   return (
     <div className="card-words">
       <div className="card-words__cards-icons">
-        <Pencil />
+        <Pencil onEditClick={onEditClick} />
       </div>
       <p className="card-words__word-en">{english}</p>
       {showRussianWord && <p className="card-words__word-ru">{russian}</p>}

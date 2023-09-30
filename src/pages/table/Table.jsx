@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { WordsContext } from "../../context/WordsProvider";
+import WordCorrection from "../../components/wordCorrection/WordCorrection";
 import Input from "../../components/input/input";
 import Btn from "../../components/btn/Btn";
 import List from "../../components/list/List";
@@ -15,6 +16,18 @@ export default function Table() {
   const validateRussianWord = (word) => /^[а-яА-ЯёЁ\s]+$/.test(word);
   // const validateTranscription = (transcription) =>
   //   /^[a-zA-Z0-9\s\-'’,.:;?()\[\]]+$/.test(transcription);
+  const [showWordCorrection, setShowWordCorrection] = useState(false);
+  const [currentWord, setCurrentWord] = useState(null);
+
+  const handleEditClick = (word) => {
+    setCurrentWord(word);
+    setShowWordCorrection(true);
+  };
+
+  const handleClose = () => {
+    setCurrentWord(null);
+    setShowWordCorrection(false);
+  };
 
   useEffect(() => {
     setFormValid(word !== "" && translation !== "" && transcription !== "");
@@ -84,12 +97,18 @@ export default function Table() {
             </div>
           </form>
         </div>
+        {showWordCorrection && (
+          <WordCorrection word={currentWord} onClose={handleClose} />
+        )}
         {words.map((word, id) => (
           <List
             key={word.id}
             english={word.english}
             transcription={word.transcription}
             russian={word.russian}
+            onEditClick={() => handleEditClick(word)}
+            word={word}
+            deleteWord={() => deleteWord(word.id)}
           />
         ))}
       </div>

@@ -1,12 +1,15 @@
 import React, { useState, useContext } from "react";
-import { WordsProvider, WordsContext } from "../../context/WordsProvider";
+import { WordsContext } from "../../context/WordsProvider";
 import Card from "../card/Card";
 import imgDogCard from "../../assets/img/dogcard.png";
 import "./game.scss";
+import WordCorrection from "../../components/wordCorrection/WordCorrection";
 
 export default function Game() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [learnedWords, setLearnedWords] = useState(0); //для передачи с дочернего компонента кол-ва изученных слов
+  const [learnedWords, setLearnedWords] = useState(0);
+  const [showWordCorrection, setShowWordCorrection] = useState(false);
+
   const { words } = useContext(WordsContext);
 
   const nextSlide = () => {
@@ -21,9 +24,16 @@ export default function Game() {
     }
   };
 
-  //функция для добавляения кол-ва изученных слов (+1)
   const handleWordLearned = () => {
     setLearnedWords((prevCount) => prevCount + 1);
+  };
+
+  const handleEditClick = () => {
+    setShowWordCorrection(true);
+  };
+
+  const handleClose = () => {
+    setShowWordCorrection(false);
   };
 
   return (
@@ -38,9 +48,11 @@ export default function Game() {
           <button onClick={prevSlide} className="slider-button prev">
             &larr;
           </button>
-          <WordsProvider>
-            <Card activeSlide={activeSlide} onWordLearned={handleWordLearned} />
-          </WordsProvider>
+          <Card
+            activeSlide={activeSlide}
+            onWordLearned={handleWordLearned}
+            onEditClick={handleEditClick}
+          />
           <button onClick={nextSlide} className="slider-button next">
             &rarr;
           </button>
@@ -48,6 +60,10 @@ export default function Game() {
       </div>
 
       <div className="game__done">Изучено слов: {learnedWords}</div>
+
+      {showWordCorrection && (
+        <WordCorrection word={words[activeSlide]} onClose={handleClose} />
+      )}
     </div>
   );
 }

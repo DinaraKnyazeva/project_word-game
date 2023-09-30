@@ -25,20 +25,63 @@ export function WordsProvider({ children }) {
       });
   }, []);
 
-  //метод для добавления слов:
   const addWord = (newWord) => {
     setWords((prevWords) => [...prevWords, newWord]);
+
+    fetch("http://itgirlschool.justmakeit.ru/api/words", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newWord),
+    }).catch((err) => {
+      setError(err.message || "Ошибка при добавлении слова.");
+    });
   };
 
-  //метод для изменения слова:
   const updateWord = (wordId, updatedWord) => {
     setWords((prevWords) =>
       prevWords.map((word) => (word.id === wordId ? updatedWord : word))
     );
+
+    fetch(`https://itgirlschool.justmakeit.ru/api/words/${wordId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedWord),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка при обновлении слова на сервере.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Слово успешно обновлено на сервере:", data);
+      })
+      .catch((error) => {
+        console.error("Ошибка при обновлении слова:", error);
+      });
   };
-  //метод для удаления слова:
+
   const deleteWord = (wordId) => {
-    setWords((prevWords) => prevWords.filter((word) => word.id !== wordId));
+    fetch(`https://itgirlschool.justmakeit.ru/api/words/${wordId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка при удалении слова на сервере.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Слово успешно удалено на сервере:", data);
+        setWords((prevWords) => prevWords.filter((word) => word.id !== wordId));
+      })
+      .catch((error) => {
+        console.error("Ошибка при удалении слова:", error);
+      });
   };
 
   return (
